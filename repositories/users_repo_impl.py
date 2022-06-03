@@ -35,10 +35,29 @@ class UsersRepoImpl(UsersRepo):
             raise ResourceNotFound(f"User with id: {u_id} -Not Found")
 
     def get_all_users(self):
-        pass
+        sql = "SELECT * from users"
+
+        cursor = connection.cursor()
+        cursor.execute(sql)
+
+        record = cursor.fetchall()
+
+        return [_build_user(record) for record in record]
 
     def update_user(self, change):
-        pass
+        sql = "UPDATE users SET email=%s, first_name=%s, last_name=%s, role=%s WHERE u_id =%s RETURNING *"
+
+        cursor = connection.cursor()
+        cursor.execute(sql, [change.email, change.first_name, change.last_name, change.role, change.u_id])
+
+        connection.commit()
+        record = cursor.fetchone()
+
+        return _build_user(record)
 
     def delete_user(self, u_id):
-        pass
+        sql = "DELETE FROM users WHERE u_id = %s"
+
+        cursor = connection.cursor()
+        cursor.execute(sql, [u_id])
+        connection.commit()
