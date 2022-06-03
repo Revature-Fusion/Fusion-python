@@ -6,17 +6,18 @@ class UsersService:
         self.users_repo = users_repo
 
     def create_user(self, user):
-        pass
+        return self.users_repo.create_user(user)
 
     def get_user(self, u_id):
-        pass
+        return self.users_repo.get_user(u_id)
 
     def get_all_users(self):
-        pass
+        return self.users_repo.get_all_users()
 
     def update_user(self, change):
-        pass
+        return self.users_repo.update_user(change)
 
     def delete_user(self, u_id):
-        pass
+        return self.users_repo.delete_user(u_id)
+
 
