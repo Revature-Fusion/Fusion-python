@@ -11,6 +11,7 @@ def create_connection():
             host='',
             port=''
         )
+
         return conn
     except OperationalError as e:
         print(f"{e}")
@@ -22,3 +23,4 @@ connection = create_connection()
 
 def _test():
     print(connection)
+
