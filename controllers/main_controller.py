@@ -1,4 +1,4 @@
-from controllers import users_controller as uc
+from controllers import user_controller as uc
 
 
 def route(app):

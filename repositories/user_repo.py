@@ -1,10 +1,18 @@
 from abc import ABC, abstractmethod
 
 
-class UsersRepo(ABC):
+class UserRepo(ABC):
 
     @abstractmethod
     def create_user(self, user):
+        pass
+
+    @abstractmethod
+    def create_guest(self, guest):
+        pass
+
+    @abstractmethod
+    def login(self, user):
         pass
 
     @abstractmethod
@@ -22,4 +30,3 @@ class UsersRepo(ABC):
     @abstractmethod
     def delete_user(self, u_id):
         pass
-

@@ -1,18 +1,13 @@
 from flask import request, jsonify
 
 from exceptions.resource_not_found import ResourceNotFound
-from models.users_model import Users
-from models.login_model import Login
-from repositories.users_repo_impl import UsersRepoImpl
-from repositories.login_repo_impl import LoginRepoImpl
-from services.users_service import UsersService
-from services.login_service import LoginService
+from models.user_model import User, Login
+from repositories.user_repo_impl import UserRepoImpl
+from services.user_service import UserService
 
-ur = UsersRepoImpl()
-us = UsersService(ur)
 
-lr = LoginRepoImpl()
-ls = LoginService(lr)
+ur = UserRepoImpl()
+us = UserService(ur)
 
 
 def route(app):
@@ -21,7 +16,7 @@ def route(app):
     def user_login():
         try:
             login = Login.json_parse(request.json)
-            u_login = ls.login(login)
+            u_login = us.login(login)
             return jsonify(u_login), 200
         except TypeError:
             return "credentials are incorrect, please try again", 404
@@ -30,8 +25,16 @@ def route(app):
     def register_user():
         body = request.json
 
-        user = Users(email=body["email"], first_name=body["firstName"], last_name=body["lastName"], role=body["role"])
+        user = User(email=body["email"], first_name=body["firstName"], last_name=body["lastName"], username=body["username"], password=body["password"], role=body["role"])
         user = us.create_user(user)
+        return user.json(), 200
+
+    @app.route("/users/guest", methods=["POST"])
+    def register_guest():
+        body = request.json
+
+        user = User(email=body["email"], first_name=body["firstName"], last_name=body["lastName"])
+        user = us.create_guest(user)
         return user.json(), 200
 
     @app.route("/users/<u_id>", methods=["GET"])
@@ -50,8 +53,8 @@ def route(app):
     @app.route("/users/<u_id>", methods=["PUT"])
     def update_user(u_id):
         body = request.json
-        user = Users(u_id=int(u_id), email=body["email"], first_name=body["firstName"], last_name=body["lastName"],
-                     role=body["role"])
+        user = User(u_id=int(u_id), email=body["email"], first_name=body["firstName"], last_name=body["lastName"],
+                    username=body["username"], password=body["password"], role=body["role"])
         user = us.update_user(user)
 
         if isinstance(user, str):
