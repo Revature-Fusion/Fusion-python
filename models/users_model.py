@@ -1,6 +1,8 @@
+from enums.role import Role
+
 class Users:
 
-    def __init__(self, u_id=0, email="", first_name="", last_name="", role=""):
+    def __init__(self, u_id=0, email="", first_name="", last_name="", role=Role):
         self.u_id = u_id
         self.email = email
         self.first_name = first_name
