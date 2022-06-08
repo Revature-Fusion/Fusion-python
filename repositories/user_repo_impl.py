@@ -18,7 +18,7 @@ def _login_user(record):
 class UserRepoImpl(UserRepo):
 
     def login(self, user):
-        sql = "SELECT * FROM testuser WHERE username = %s and password = %s"
+        sql = "SELECT * FROM users WHERE username = %s and password = %s"
 
         cursor = connection.cursor()
         cursor.execute(sql, [user.username, user.password])
@@ -31,7 +31,7 @@ class UserRepoImpl(UserRepo):
             raise LoginException("Incorrect username or password")
 
     def create_guest(self, guest):
-        sql = "INSERT into testuser VALUES (DEFAULT,%s,%s,%s,NULL,NULL,'GUEST') RETURNING *"
+        sql = "INSERT into users VALUES (DEFAULT,%s,%s,%s,NULL,NULL,'GUEST') RETURNING *"
 
         cursor = connection.cursor()
         cursor.execute(sql, [guest.email, guest.first_name, guest.last_name])
@@ -42,7 +42,7 @@ class UserRepoImpl(UserRepo):
         return _build_user(record)
 
     def create_user(self, user):
-        sql = "INSERT into testuser VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING *"
+        sql = "INSERT into users VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING *"
 
         cursor = connection.cursor()
         cursor.execute(sql, [user.email, user.first_name, user.last_name, user.username, user.password, user.role])
@@ -54,7 +54,7 @@ class UserRepoImpl(UserRepo):
 
     def get_user(self, u_id):
 
-        sql = "SELECT * FROM testuser WHERE u_id = %s"
+        sql = "SELECT * FROM users WHERE u_id = %s"
         cursor = connection.cursor()
         cursor.execute(sql, [u_id])
 
@@ -66,7 +66,7 @@ class UserRepoImpl(UserRepo):
             raise ResourceNotFound(f"User with id: {u_id} -Not Found")
 
     def get_all_users(self):
-        sql = "SELECT * from testuser"
+        sql = "SELECT * from users"
 
         cursor = connection.cursor()
         cursor.execute(sql)
@@ -76,7 +76,7 @@ class UserRepoImpl(UserRepo):
         return [_build_user(record) for record in record]
 
     def update_user(self, change):
-        sql = "UPDATE testuser SET email=%s, first_name=%s, last_name=%s, username=%s, password=%s, role=%s WHERE u_id =%s RETURNING *"
+        sql = "UPDATE users SET email=%s, first_name=%s, last_name=%s, username=%s, password=%s, role=%s WHERE u_id =%s RETURNING *"
 
         cursor = connection.cursor()
         cursor.execute(sql, [change.email, change.first_name, change.last_name, change.username, change.password,
@@ -88,7 +88,7 @@ class UserRepoImpl(UserRepo):
         return _build_user(record)
 
     def delete_user(self, u_id):
-        sql = "DELETE FROM testuser WHERE u_id = %s"
+        sql = "DELETE FROM users WHERE u_id = %s"
 
         cursor = connection.cursor()
         cursor.execute(sql, [u_id])
