@@ -1,14 +1,5 @@
 import unittest
-
-# from models.login_model import Login
-# from models.users_model import Users
-# from repositories.users_repo_impl import UsersRepoImpl
-#
-# ur = UsersRepoImpl()
-# user = Users(email="Test1", first_name="testname", last_name="testlast", role="testrole")
-# login = Login(username="testuser", password="test123")
-
-from models.user_model import User, Login
+from models.user_model import User
 from repositories.user_repo_impl import UserRepoImpl
 
 ur = UserRepoImpl()
@@ -23,19 +14,19 @@ class TestUsersRep(unittest.TestCase):
         user1 = ur.create_user(user)
         print(user1)
 
-    def test_create_guest(self):
+    def test_bcreate_guest(self):
         guest1 = ur.create_guest(guest)
         print(guest1)
 
-    def test_bget_user(self):
+    def test_cget_user(self):
         pass
 
-    def test_cget_all_user(self):
+    def test_dget_all_user(self):
         pass
 
-    def test_dupdate_user(self):
+    def test_eupdate_user(self):
         pass
 
-    def test_edelete_user(self):
+    def test_fdelete_user(self):
         pass
 
