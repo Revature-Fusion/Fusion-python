@@ -18,7 +18,7 @@ def _login_user(record):
 class UserRepoImpl(UserRepo):
 
     def login(self, user):
-        sql = "SELECT * FROM users WHERE username = %s and password = %s"
+        sql = "SELECT * FROM users WHERE username = %s and password = crypt(%s, password)"
 
         cursor = connection.cursor()
         cursor.execute(sql, [user.username, user.password])
