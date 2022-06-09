@@ -3,7 +3,7 @@ from models.user_model import User
 from repositories.user_repo_impl import UserRepoImpl
 
 ur = UserRepoImpl()
-user = User(email="test1", first_name="testfname", last_name="testlname", username="testusername",
+user = User(email="test3", first_name="testfname", last_name="testlname", username="testusername",
             password="testpassword", role="MEMBER")
 guest = User(email="guestemail", first_name="guestfname", last_name="guestlname")
 

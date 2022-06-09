@@ -6,10 +6,10 @@ def create_connection():
     try:
         conn = psycopg2.connect(
             database='postgres',
-            user='',
-            password='',
-            host='',
-            port=''
+            user='postgres',
+            password='password',
+            host='fusion-db.cfnl7bnhgahp.us-east-2.rds.amazonaws.com',
+            port='5432'
         )
 
         return conn

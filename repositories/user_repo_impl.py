@@ -42,7 +42,7 @@ class UserRepoImpl(UserRepo):
         return _build_user(record)
 
     def create_user(self, user):
-        sql = "INSERT into users VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING *"
+        sql = "INSERT into users VALUES (DEFAULT,%s,%s,%s,%s,crypt(%s, gen_salt('bf')),%s) RETURNING *"
 
         cursor = connection.cursor()
         cursor.execute(sql, [user.email, user.first_name, user.last_name, user.username, user.password, user.role])
