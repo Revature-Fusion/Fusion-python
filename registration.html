@@ -44,6 +44,7 @@
                 <td>Role</td>
                 <td><input id="role" type="text">
             </tr>
+            <td><input type="checkbox" onclick="togglePassword()">Show Password</td>
             <tr>
         </table>
         <div>
@@ -80,10 +81,20 @@
 </body>
     <!-- This Is the function that will input the role choice-->
 <script>
-    function chosenRole() {  
-var rolelist = document.getElementById("roleList");  
-document.getElementById("role").value = rolelist.options[rolelist.selectedIndex].text;  
-}  
+    function chosenRole() {
+    var rolelist = document.getElementById("roleList");
+    document.getElementById("role").value = rolelist.options[rolelist.selectedIndex].text;
+    }
+
+    //-- This function toggles password visibility --//
+    function togglePassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+        x.type = "text";
+        } else {
+        x.type = "password";
+        }
+    }
     //-- This Is the function that will submit the member/admin info to the Database--
     async function submitForm() {
 
