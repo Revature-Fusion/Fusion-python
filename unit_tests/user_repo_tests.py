@@ -19,14 +19,18 @@ class TestUsersRep(unittest.TestCase):
         print(guest1)
 
     def test_cget_user(self):
-        pass
+        print(ur.get_user(1))
 
     def test_dget_all_user(self):
-        pass
+        print(ur.get_all_users())
 
     def test_eupdate_user(self):
-        pass
+        user = ur.get_user(4)
+        user.name = "test14"
+        user = ur.update_user(user)
+        print(user)
 
     def test_fdelete_user(self):
-        pass
-
+        user = ur.get_user(4)
+        ur.delete_user(user.u_id)
+        print(ur.get_all_users())
