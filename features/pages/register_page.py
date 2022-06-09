@@ -36,3 +36,9 @@ class RegisterPage:
 
     def guest_last_name(self):
         return self.driver.find_element(by=By.ID, value="guestlastName")
+    
+    def register_btn(self):
+        return self.driver.find_element(by=By.ID, value="register_btn")
+    
+    def guest_btn(self):
+        return self.driver.find_element(by=By.ID, value="guest_btn")
