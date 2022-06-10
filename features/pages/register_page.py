@@ -8,13 +8,12 @@ class RegisterPage:
     def __init__(self, driver: WebDriver):
         self.driver = driver
 
-
     def role(self):
-        dropdown = self.driver.find_element(by=By.ID, value="roleList")
-        return dropdown.select_by_value("MEMBER")
+        select = Select(self.driver.find_element(by=By.ID, value='roleList'))
+        return select
 
     def user_email(self):
-        return self.driver.find_element_by_xpath("//div[@id='inner1']//*[@id='email']")
+        return self.driver.find_element(by=By.XPATH, value="//div[@id='inner1']//*[@id='email']")
 
     def user_first_name(self):
         return self.driver.find_element(by=By.ID, value="firstName")
@@ -36,9 +35,9 @@ class RegisterPage:
 
     def guest_last_name(self):
         return self.driver.find_element(by=By.ID, value="guestlastName")
-    
+
     def register_btn(self):
         return self.driver.find_element(by=By.ID, value="register_btn")
-    
+
     def guest_btn(self):
         return self.driver.find_element(by=By.ID, value="guest_btn")
