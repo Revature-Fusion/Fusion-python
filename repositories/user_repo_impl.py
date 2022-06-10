@@ -26,7 +26,7 @@ class UserRepoImpl(UserRepo):
 
         record = cursor.fetchone()
         if record:
-            return Login(record[0], record[1], record[2]).json()
+            return Login(record[0], record[1], record[2], record[3], record[4]).json()
         else:
             raise LoginException("Incorrect username or password")
 

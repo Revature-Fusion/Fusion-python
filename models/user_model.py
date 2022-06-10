@@ -34,16 +34,20 @@ class User:
 
 class Login:
 
-    def __init__(self, u_id=0, username="", password=""):
+    def __init__(self, u_id=0, username="", password="", first_name="", last_name=""):
         self.u_id = u_id
         self.username = username
         self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
 
     def json(self):
         return {
             "uId": self.u_id,
             "username": self.username,
-            "password": self.password
+            "password": self.password,
+            "firstName": self.first_name,
+            "lastName": self.last_name
         }
 
     @staticmethod
