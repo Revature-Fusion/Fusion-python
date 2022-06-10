@@ -5,23 +5,29 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from features.pages.login_page import LoginPage
 from features.pages.register_page import RegisterPage
 
-ser= Service()
-driver: WebDriver= webdriver.Chrome(service=ser)
-login= LoginPage(driver)
-register= RegisterPage(driver)
+ser = Service('')
+driver: WebDriver = webdriver.Chrome(service=ser)
+login: LoginPage = LoginPage(driver)
+register: RegisterPage = RegisterPage(driver)
+
 
 def _test():
     try:
-        driver.get("file:///C:/Users/tomiw/Desktop/Work/Fusion-python/login.html")
-        #change directory for local system^
+        driver.get("file://")
+
+        # change directory for local system^
+
         time.sleep(3)
-        login.login_username.send_keys("sampleusername")
-        login.login_password.send_keys("samplepassword")
+        login.login_username().send_keys("testusername")
+        login.login_password().send_keys("testpassword")
         login.login_btn().click()
         time.sleep(3)
-        driver.get("file:///C:/Users/tomiw/Desktop/Work/Fusion-python/registration.html")
-        #change directory for local system^
-        register.role()
+
+        driver.get("file://")
+
+        # change directory for local system^
+
+        register.role().select_by_value("MEMBER")
         register.user_email().send_keys("mattsmith@electronicmail.com")
         register.user_first_name().send_keys("matt")
         register.user_last_name().send_keys("smith")
@@ -37,7 +43,12 @@ def _test():
         assert "successfully registered user" == driver.switch_to.alert.text
     except AssertionError:
         print(f"could not register user:{driver.switch_to.alert.text}")
+        # need to create an alert
     else:
-        ("user registered")
+        print(f"user registered")
     finally:
         driver.quit()
+
+
+if __name__ == '__main__':
+    _test()
