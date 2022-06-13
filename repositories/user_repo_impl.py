@@ -3,7 +3,6 @@ from exceptions.resource_not_found import ResourceNotFound
 from models.user_model import User
 from repositories.user_repo import UserRepo
 from util.db_connection import connection
-from models.user_model import Login
 
 
 def _build_user(record):

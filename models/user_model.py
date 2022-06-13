@@ -33,7 +33,7 @@ class User:
 
     @staticmethod
     def json_parse(json):
-        login = Login()
+        login = User()
         login.username = json['username']
         login.password = json['password']
         login.u_id = json['uId'] if 'uId' in json else 0

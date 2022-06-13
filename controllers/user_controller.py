@@ -1,7 +1,7 @@
 from flask import request, jsonify
 
 from exceptions.resource_not_found import ResourceNotFound
-from models.user_model import User, Login
+from models.user_model import User
 from repositories.user_repo_impl import UserRepoImpl
 from services.user_service import UserService
 
