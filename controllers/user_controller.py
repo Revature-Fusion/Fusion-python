@@ -15,7 +15,7 @@ def route(app):
     @app.route("/login", methods=["POST"])
     def user_login():
         try:
-            login = Login.json_parse(request.json)
+            login = User.json_parse(request.json)
             u_login = us.login(login)
             return jsonify(u_login), 200
         except TypeError:
